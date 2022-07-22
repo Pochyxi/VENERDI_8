@@ -1,0 +1,101 @@
+[
+    {
+      "utente": "Tommaso Brichetti",
+      "numeroCellulare": "333 44 55 6677",
+      "credito": "10",
+      "numeroChiamate": "0",
+      "rubrica": [
+                    { "nome": "Código de Santéria",
+                      "numeroCellulare": "333 55 21 6766"
+                    },
+
+                    { "nome": "Másiciano Moroccante",
+                      "numeroCellulare": "333 55 21 6766"
+                    }, 
+
+                    { "nome": "Nacional de Coraz\u00f3n",
+                      "numeroCellulare": "333 55 21 6766"
+                    }                    
+                  ]
+    },
+
+    {
+      "utente": "Giandomenico Maggio",
+      "numeroCellulare": "333 46 15 0977",
+      "credito": "10",
+      "numeroChiamate": "0",
+      "rubrica": [
+                    { "nome": "Código de Santéria",
+                      "numeroCellulare": "333 55 21 6766"
+                    },
+
+                    { "nome": "Másiciano Moroccante",
+                      "numeroCellulare": "333 55 21 6766"
+                    }, 
+
+                    { "nome": "Nacional de Coraz\u00f3n",
+                      "numeroCellulare": "333 55 21 6766"
+                    }                    
+                  ]
+    },
+
+    {
+      "utente": "Myke Tyson",
+      "numeroCellulare": "323 48 45 1678",
+      "credito": "10",
+      "numeroChiamate": "0",
+      "rubrica": [
+                    { "nome": "Código de Santéria",
+                      "numeroCellulare": "333 55 21 6766"
+                    },
+
+                    { "nome": "Másiciano Moroccante",
+                      "numeroCellulare": "333 55 21 6766"
+                    }, 
+
+                    { "nome": "Nacional de Coraz\u00f3n",
+                      "numeroCellulare": "333 55 21 6766"
+                    }                    
+                  ]
+    },
+
+    {
+      "utente": "Luca Lazzaretti",
+      "numeroCellulare": "333 44 55 6677",
+      "credito": "10",
+      "numeroChiamate": "0",
+      "rubrica": [
+                    { "nome": "Código de Santéria",
+                      "numeroCellulare": "333 55 21 6766"
+                    },
+
+                    { "nome": "Másiciano Moroccante",
+                      "numeroCellulare": "333 55 21 6766"
+                    }, 
+
+                    { "nome": "Nacional de Coraz\u00f3n",
+                      "numeroCellulare": "333 55 21 6766"
+                    }                    
+                  ]
+    },
+
+    {
+      "utente": "Adiener Lopez Velazquez",
+      "numeroCellulare": "313 34 35 6475",
+      "credito": "10",
+      "numeroChiamate": "0",
+      "rubrica": [
+                    { "nome": "Código de Santéria",
+                      "numeroCellulare": "333 55 21 6766"
+                    },
+
+                    { "nome": "Másiciano Moroccante",
+                      "numeroCellulare": "333 55 21 6766"
+                    }, 
+
+                    { "nome": "Nacional de Coraz\u00f3n",
+                      "numeroCellulare": "333 55 21 6766"
+                    }                    
+                  ]
+    }
+]

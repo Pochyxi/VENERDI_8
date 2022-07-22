@@ -1,0 +1,67 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  padding-top: 1em;
+}
+.container .scoccaEsterna {
+  width: 30%;
+  height: 90%;
+  background-color: rgb(0, 0, 0);
+  margin: 0 auto;
+  padding: 0 0.7em 2.5em;
+  border-radius: 10%;
+}
+.container .scoccaEsterna .frontCamera {
+  position: relative;
+  top: 3%;
+  width: 40%;
+  height: 3%;
+  background-color: rgb(0, 0, 0);
+  margin: 0 auto;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.container .scoccaEsterna #display {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.container .scoccaEsterna #display .sezioneUtente {
+  margin: 1em auto;
+  width: 100%;
+  text-align: center;
+  padding: 2.1em 0;
+  border-top: 2px solid blue;
+  background-image: linear-gradient(blue, white);
+  border-radius: 20px;
+  cursor: pointer;
+}
+.container .scoccaEsterna #display .sezioneUtente:hover {
+  border-top: none;
+  background-image: linear-gradient(white, red);
+}
+.container .scoccaEsterna #display .sezioneUtente .username {
+  display: inline-block;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.modal {
+  overflow: scroll;
+  background-color: rgba(0, 0, 0, 0.633);
+  color: white;
+  font-size: 1.2em;
+  align-self: center;
+  padding: 0.5em;
+  border-radius: 20px;
+}
+.modal .utente-modal,
+.modal .numeroCellulare-modal,
+.modal .credito-modal,
+.modal .azioni-modal {
+  padding: 2em 0;
+}/*# sourceMappingURL=style.css.map */
