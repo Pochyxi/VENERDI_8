@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// Creo la classe che creerà gli utenti dal json che mi creerò in futuro
+// Creo la classe che creerà gli utenti dal json che mi creerò in futuro 
 var UserSmartphone = /** @class */ (function () {
     function UserSmartphone(utente, numeroCellulare, credito, numeroChiamate, rubrica) {
         this.utente = utente;
@@ -54,11 +54,12 @@ var UserSmartphone = /** @class */ (function () {
     UserSmartphone.prototype.ricarica = function (number) {
         if (this.credito < 0) {
             var debito = Math.abs(this.credito);
-            var creditoAggiornato = number + parseInt(this.credito.toFixed(2));
+            var creditoAggiornato = number + this.credito;
+            console.log(creditoAggiornato);
+            console.log(number.toFixed(2), this.credito.toFixed(2));
             console.log("Sotratti dalla ricarica ".concat(debito.toFixed(2), " euro, a causa di un credito negativo. Credito aggiornato: ").concat(creditoAggiornato.toFixed(2)));
         }
         this.credito = this.credito + number;
-        console.log(typeof this.credito, typeof number);
     };
     // L'UTENTE EFFETTUA UNA CHIAMATA
     UserSmartphone.prototype.chiama = function () {
@@ -89,9 +90,9 @@ var UserSmartphone = /** @class */ (function () {
                 }
                 if (_this.statoChiamata == false && _this.credito > 0) {
                     clearInterval(timer_1);
-                    console.log("Chiamata terminata dall'utente! Addebbitati costi chiamata per un totale di: ".concat(minutes_1 * parseInt(scattoAllaRisposta_1.toFixed(2)), " euro pi\u00F9 ").concat(scattoAllaRisposta_1.toFixed(2), " di scatto alla risposta"));
+                    console.log("Chiamata terminata dall'utente ".concat(_this.utente, "! Addebbitati costi chiamata per un totale di: ").concat(minutes_1 * parseInt(scattoAllaRisposta_1.toFixed(2)), " euro pi\u00F9 ").concat(scattoAllaRisposta_1.toFixed(2), " di scatto alla risposta"));
                 }
-                console.log("durata chiamata: " + minutes_1 + " " + seconds_1 + " credito: " + _this.credito.toFixed(2));
+                console.log("".concat(_this.utente, " , durata chiamata: ").concat(minutes_1, " ").concat(seconds_1, " credito: ").concat(_this.credito.toFixed(2)));
             }, 1000);
         }
         else {
@@ -111,12 +112,39 @@ var Displayer = /** @class */ (function () {
         this.arr = arr;
     }
     ;
+    Displayer.prototype.wellcome = function () {
+        var _this = this;
+        var display = document.querySelector('#display');
+        var divWelcome = document.createElement('div');
+        divWelcome.className = 'wellcome';
+        display.append(divWelcome);
+        setTimeout(function () {
+            divWelcome.innerHTML = '<h2>BENVENUTI</h2>';
+        }, 1000);
+        setTimeout(function () {
+            divWelcome.innerHTML += '<h2>ESERCIZIO EPICODE VENERDI 8</h2>';
+        }, 2000);
+        setTimeout(function () {
+            var buttonStart = document.createElement('button');
+            buttonStart.className = 'buttonStart';
+            buttonStart.innerHTML = 'LOGIN';
+            divWelcome.append(buttonStart);
+            buttonStart.addEventListener('click', function () {
+                divWelcome.style.backgroundColor = 'green';
+                divWelcome.innerHTML = '';
+                setTimeout(function () {
+                    _this.displayUsers();
+                }, 500);
+            });
+        }, 5000);
+    };
     Displayer.prototype.displayUsers = function () {
         var display = document.querySelector('#display');
         var menuDiv = document.createElement('div');
         menuDiv.id = 'menuDiv';
-        console.log(display);
+        var thisClass = this;
         this.arr.forEach(function (user) {
+            thisClass.clearElement('#display');
             openMenu();
             function openMenu() {
                 var div = document.createElement('div');
@@ -128,18 +156,22 @@ var Displayer = /** @class */ (function () {
                 menuDiv.append(div);
                 display.append(menuDiv);
                 div.addEventListener('click', function () {
-                    clearMenuDiv();
+                    thisClass.clearElement('#display');
                     openModal();
                 });
-            }
-            function clearMenuDiv() {
-                var display = document.querySelector('#display');
-                var menuDiv = document.querySelector('#menuDiv');
-                display.removeChild(menuDiv);
             }
             function openModal() {
                 var modal = document.createElement('div');
                 modal.className = 'modal';
+                var divTurnBack = document.createElement('div');
+                divTurnBack.className = 'modal-div-turnBack';
+                var turnBack = document.createElement('button');
+                turnBack.className = 'modal-back';
+                turnBack.innerHTML = '<ion-icon name="home-outline"></ion-icon>';
+                turnBack.addEventListener('click', function () {
+                    thisClass.clearElement('#display');
+                    thisClass.displayUsers();
+                });
                 var utente = document.createElement('div');
                 utente.className = 'utente-modal';
                 utente.innerHTML = "BENVENUTO ".concat(user.utente);
@@ -148,10 +180,10 @@ var Displayer = /** @class */ (function () {
                 numeroCellulare.innerHTML = "Numero di telefono: ".concat(user.numeroCellulare.toString());
                 var credito = document.createElement('div');
                 credito.className = 'credito-modal';
-                credito.innerHTML = "Credito residuo: ".concat(user.credito.toString(), " \u20AC");
+                credito.innerHTML = "Credito residuo: ".concat(user.credito.toFixed(2), " \u20AC");
                 var form = document.createElement('form');
                 var ricarica = document.createElement('label');
-                ricarica.innerHTML = "ricarica ora";
+                ricarica.innerHTML = "Inserisci importo";
                 var ricaricaInput = document.createElement('input');
                 ricaricaInput.type = 'text';
                 var buttonRicarica = document.createElement('button');
@@ -161,8 +193,7 @@ var Displayer = /** @class */ (function () {
                     event.preventDefault();
                     var importo = parseInt(ricaricaInput.value);
                     user.ricarica(importo);
-                    console.log(typeof importo, typeof user.credito);
-                    credito.innerHTML = "Credito residuo: ".concat(user.credito.toString(), " \u20AC");
+                    credito.innerHTML = "Credito residuo: ".concat(user.credito.toFixed(2), " \u20AC");
                 });
                 var numeroChiamate = document.createElement('div');
                 numeroChiamate.className = 'credito-modal';
@@ -189,6 +220,7 @@ var Displayer = /** @class */ (function () {
                                 minutes_2++;
                             }
                             timing_1.textContent = "Durata: ".concat(minutes_2, " minuti ").concat(seconds_2, " secondi");
+                            credito.innerHTML = "Credito residuo: ".concat(user.credito.toFixed(2), " \u20AC");
                             modal.append(timing_1);
                             if (timerConfirm == false) {
                                 clearInterval(timer_2);
@@ -196,18 +228,25 @@ var Displayer = /** @class */ (function () {
                         }, 1000);
                     }
                 });
-                buttonChiama.textContent = "INIZIA CHIAMATA";
+                buttonChiama.innerHTML = '<ion-icon name="call-outline"></ion-icon>';
+                buttonChiama.className = 'buttonChiama';
                 var buttonTermina = document.createElement('button');
-                buttonTermina.textContent = "TERMINA CHIAMATA";
+                buttonTermina.innerHTML = '<ion-icon name="call-outline"></ion-icon>';
+                buttonTermina.className = 'buttonTermina';
                 buttonTermina.addEventListener("click", function () {
                     user.terminaChiamata();
                     timerConfirm = false;
                 });
+                divTurnBack.append(turnBack);
                 azioni.append(buttonChiama, buttonTermina);
-                modal.append(utente, numeroCellulare, credito, form, azioni, numeroChiamate);
+                modal.append(divTurnBack, utente, numeroCellulare, credito, form, azioni, numeroChiamate);
                 display.append(modal);
             }
         });
+    };
+    Displayer.prototype.clearElement = function (id) {
+        var element = document.querySelector(id);
+        element.innerHTML = "";
     };
     return Displayer;
 }());
@@ -221,13 +260,13 @@ function getUsers() {
                     res = _a.sent();
                     arrOfUsers = [];
                     res.forEach(function (e) {
-                        var credito = parseInt(e.credito);
-                        var userSmartphone = new UserSmartphone(e.utente, e.numeroCellulare, credito, e.numeroChiamate, e.rubrica);
+                        var credito = parseInt(e.credito), numeroChiamate = parseInt(e.numeroChiamate);
+                        var userSmartphone = new UserSmartphone(e.utente, e.numeroCellulare, credito, numeroChiamate, e.rubrica);
                         arrOfUsers.push(userSmartphone);
                     });
                     console.log(arrOfUsers);
                     el = new Displayer(arrOfUsers);
-                    el.displayUsers();
+                    el.wellcome();
                     return [2 /*return*/];
             }
         });

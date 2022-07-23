@@ -2,7 +2,7 @@ interface Smartphone {
     credito:number
     numeroChiamate:number;
 }
-// Creo la classe che creerà gli utenti dal json che mi creerò in futuro
+// Creo la classe che creerà gli utenti dal json che mi creerò in futuro 
 class UserSmartphone implements Smartphone {
      credito: number;
      numeroChiamate:number;
@@ -33,12 +33,12 @@ class UserSmartphone implements Smartphone {
     ricarica(number:number) {
         if (this.credito < 0) {
             let debito = Math.abs(this.credito); 
-            let creditoAggiornato = number + parseInt(this.credito.toFixed(2))
+            let creditoAggiornato = number + this.credito;
+            console.log(creditoAggiornato);
+            console.log(number.toFixed(2), this.credito.toFixed(2))
             console.log(`Sotratti dalla ricarica ${debito.toFixed(2)} euro, a causa di un credito negativo. Credito aggiornato: ${creditoAggiornato.toFixed(2)}`);
         }
-
         this.credito = this.credito + number;
-        console.log(typeof this.credito, typeof number);
     }
 
     // L'UTENTE EFFETTUA UNA CHIAMATA
@@ -73,10 +73,10 @@ class UserSmartphone implements Smartphone {
 
                 if (this.statoChiamata == false && this.credito > 0) {
                     clearInterval(timer);
-                    console.log(`Chiamata terminata dall'utente! Addebbitati costi chiamata per un totale di: ${minutes * parseInt(scattoAllaRisposta.toFixed(2))} euro più ${scattoAllaRisposta.toFixed(2)} di scatto alla risposta`)
+                    console.log(`Chiamata terminata dall'utente ${this.utente}! Addebbitati costi chiamata per un totale di: ${minutes * parseInt(scattoAllaRisposta.toFixed(2))} euro più ${scattoAllaRisposta.toFixed(2)} di scatto alla risposta`)
                 }
 
-                console.log("durata chiamata: " + minutes + " " + seconds + " credito: " + this.credito.toFixed(2));
+                console.log(`${this.utente} , durata chiamata: ${minutes} ${seconds} credito: ${this.credito.toFixed(2)}`);
             }, 1000)
             
         } else {
@@ -101,45 +101,80 @@ class Displayer {
         this.arr = arr;
     };
 
+    wellcome(){
+         let display = document.querySelector('#display');
+            let divWelcome = document.createElement('div');
+                divWelcome.className = 'wellcome';
+            display.append(divWelcome);
+        setTimeout(() => {
+           divWelcome.innerHTML = '<h2>BENVENUTI</h2>';
+        },1000)
+        setTimeout(() => {
+            divWelcome.innerHTML += '<h2>ESERCIZIO EPICODE VENERDI 8</h2>';
+         },2000)
+
+        setTimeout(() => {
+            let buttonStart = document.createElement('button');
+                buttonStart.className = 'buttonStart';
+                buttonStart.innerHTML = 'LOGIN';
+                divWelcome.append(buttonStart);
+                buttonStart.addEventListener('click', () => {
+                    divWelcome.style.backgroundColor = 'green';
+                    divWelcome.innerHTML = '';
+                    setTimeout(() => {
+                        this.displayUsers();
+                     },500)
+                });
+         },5000)
+
+    }
+
     displayUsers(){
         let display = document.querySelector('#display');
         let menuDiv = document.createElement('div');
             menuDiv.id = 'menuDiv';
-        console.log(display);
+
+        let thisClass = this
 
         this.arr.forEach(function(user){
-            
-            openMenu();
+            thisClass.clearElement('#display');
 
+            openMenu();
+            
 
             function openMenu(){
                 let div = document.createElement('div');
-                div.className = "sezioneUtente"
+                    div.className = "sezioneUtente";
 
                 let span = document.createElement('span');
                     span.className = "username";
                     span.innerText = user.utente;
-
+        
                 div.append(span)
                 menuDiv.append(div)
                 display.append(menuDiv);
                 
 
                 div.addEventListener('click', function () {
-                    clearMenuDiv(); 
+                    thisClass.clearElement('#display');
                     openModal();
-            })
+                })
             }
-            function clearMenuDiv() {
-            let display = document.querySelector ('#display');
-            let menuDiv = document.querySelector('#menuDiv');
-            display.removeChild(menuDiv);
 
-            
-            }
             function openModal() {
                 let modal = document.createElement('div');
                     modal.className = 'modal';
+                
+                let divTurnBack = document.createElement('div');
+                    divTurnBack.className = 'modal-div-turnBack';
+                let turnBack = document.createElement('button');
+                    turnBack.className = 'modal-back';
+                    turnBack.innerHTML = '<ion-icon name="home-outline"></ion-icon>';
+                    turnBack.addEventListener('click', () => {
+                        thisClass.clearElement('#display');
+                        thisClass.displayUsers();
+                    });
+
 
                 let utente = document.createElement('div');
                     utente.className = 'utente-modal';
@@ -151,11 +186,11 @@ class Displayer {
 
                 let credito = document.createElement('div');
                     credito.className = 'credito-modal';
-                    credito.innerHTML = `Credito residuo: ${user.credito.toString()} €`;
+                    credito.innerHTML = `Credito residuo: ${user.credito.toFixed(2)} €`;
 
                 let form = document.createElement('form');
                 let ricarica = document.createElement('label');
-                    ricarica.innerHTML = "ricarica ora";
+                    ricarica.innerHTML = "Inserisci importo";
                 let ricaricaInput = document.createElement('input');
                     ricaricaInput.type = 'text';
                 let buttonRicarica = document.createElement('button');
@@ -166,11 +201,10 @@ class Displayer {
                     event.preventDefault();
                     let importo = parseInt(ricaricaInput.value);
                     
-                    user.ricarica(importo)
+                    user.ricarica(importo);
 
-                    console.log(typeof importo, typeof user.credito);
 
-                    credito.innerHTML = `Credito residuo: ${user.credito.toString()} €`;
+                    credito.innerHTML = `Credito residuo: ${user.credito.toFixed(2)} €`;
                 })
 
 
@@ -201,6 +235,7 @@ class Displayer {
                                         minutes++;
                                     }                
                                     timing.textContent = `Durata: ${minutes} minuti ${seconds} secondi`
+                                    credito.innerHTML = `Credito residuo: ${user.credito.toFixed(2)} €`;
                                     modal.append(timing);
 
                                     if (timerConfirm == false) {
@@ -212,18 +247,22 @@ class Displayer {
                             
                         });
 
-                        buttonChiama.textContent = "INIZIA CHIAMATA";
+                        buttonChiama.innerHTML = '<ion-icon name="call-outline"></ion-icon>';
+                        buttonChiama.className = 'buttonChiama';
 
                     let buttonTermina = document.createElement('button');
-                        buttonTermina.textContent = "TERMINA CHIAMATA";
+                        buttonTermina.innerHTML = '<ion-icon name="call-outline"></ion-icon>';
+                        buttonTermina.className = 'buttonTermina';
 
                         buttonTermina.addEventListener("click", () => {
                             user.terminaChiamata();
                             timerConfirm = false;
                         });
-                
+
+
+                divTurnBack.append(turnBack);
                 azioni.append(buttonChiama, buttonTermina);
-                modal.append(utente, numeroCellulare, credito,form, azioni, numeroChiamate);
+                modal.append(divTurnBack , utente, numeroCellulare, credito,form, azioni, numeroChiamate);
                 display.append(modal);
 
 
@@ -233,6 +272,12 @@ class Displayer {
 
         
     }
+
+    clearElement(id:string){
+        let element = document.querySelector(id);
+            element.innerHTML = "";
+            
+    }
 }
 
 async function getUsers() {
@@ -240,15 +285,17 @@ async function getUsers() {
     let arrOfUsers:UserSmartphone[] = [];
     
     res.forEach((e) => {
-        let credito = parseInt(e.credito);
-        let userSmartphone = new UserSmartphone(e.utente, e.numeroCellulare, credito, e.numeroChiamate, e.rubrica);
+        let credito = parseInt(e.credito),
+            numeroChiamate = parseInt(e.numeroChiamate);
+        
+        let userSmartphone = new UserSmartphone(e.utente, e.numeroCellulare, credito, numeroChiamate, e.rubrica);
         arrOfUsers.push(userSmartphone);
 
        
     })
     console.log(arrOfUsers);
     let el = new Displayer(arrOfUsers);
-    el.displayUsers();
+    el.wellcome();
     
 }
 

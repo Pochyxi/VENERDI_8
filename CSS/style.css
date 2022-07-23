@@ -4,14 +4,18 @@
   padding-top: 1em;
 }
 .container .scoccaEsterna {
-  width: 30%;
+  overflow: hidden;
+  width: 60%;
   height: 90%;
   background-color: rgb(0, 0, 0);
   margin: 0 auto;
-  padding: 0 0.7em 2.5em;
+  padding: 0 1em;
+  padding-bottom: 2em;
   border-radius: 10%;
 }
 .container .scoccaEsterna .frontCamera {
+  display: flex;
+  justify-content: center;
   position: relative;
   top: 3%;
   width: 40%;
@@ -21,47 +25,149 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+.container .scoccaEsterna .frontCamera .cameraCassa {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+  height: 50%;
+}
+.container .scoccaEsterna .frontCamera .cameraCassa .cassa {
+  width: 60%;
+  height: 100%;
+  background-color: rgb(49, 49, 49);
+}
+.container .scoccaEsterna .frontCamera .cameraCassa .camera {
+  width: 20%;
+  height: 100%;
+  background-image: linear-gradient(50deg, black, violet);
+  border-radius: 50%;
+}
 .container .scoccaEsterna #display {
+  height: 98%;
+  width: 100%;
+  margin: 0 auto;
+}
+.container .scoccaEsterna #display #menuDiv {
+  overflow: auto;
   background-color: white;
   width: 100%;
   height: 100%;
   border-radius: 5%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
-.container .scoccaEsterna #display .sezioneUtente {
+.container .scoccaEsterna #display #menuDiv .sezioneUtente {
   margin: 1em auto;
-  width: 100%;
+  width: 50%;
   text-align: center;
   padding: 2.1em 0;
   border-top: 2px solid blue;
-  background-image: linear-gradient(blue, white);
+  background-image: linear-gradient(rgb(143, 143, 253), white);
   border-radius: 20px;
   cursor: pointer;
 }
-.container .scoccaEsterna #display .sezioneUtente:hover {
+.container .scoccaEsterna #display #menuDiv .sezioneUtente:hover {
   border-top: none;
   background-image: linear-gradient(white, red);
 }
-.container .scoccaEsterna #display .sezioneUtente .username {
-  display: inline-block;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.modal {
-  overflow: scroll;
-  background-color: rgba(0, 0, 0, 0.633);
+.container .scoccaEsterna #display .modal {
+  overflow: auto;
+  height: 90%;
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.652);
   color: white;
   font-size: 1.2em;
   align-self: center;
-  padding: 0.5em;
+  padding: 1.5em;
+  border-radius: 10%;
+}
+.container .scoccaEsterna #display .modal .modal-div-turnBack {
+  display: flex;
+  justify-content: flex-start;
+}
+.container .scoccaEsterna #display .modal .modal-div-turnBack button {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  bottom: 0.5em;
+  left: 0.5em;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+.container .scoccaEsterna #display .modal .modal-div-turnBack button ion-icon {
+  color: azure;
+}
+.container .scoccaEsterna #display .modal .modal-div-turnBack button ion-icon:hover {
+  box-shadow: 0px 0px 10px azure;
+  border-radius: 50%;
+}
+.container .scoccaEsterna #display .modal .utente-modal,
+.container .scoccaEsterna #display .modal .numeroCellulare-modal,
+.container .scoccaEsterna #display .modal .credito-modal,
+.container .scoccaEsterna #display .modal .azioni-modal {
+  padding: 2em 0;
+}
+.container .scoccaEsterna #display .modal form {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.container .scoccaEsterna #display .modal form label {
+  margin-right: 0.5em;
+}
+.container .scoccaEsterna #display .modal form input {
+  width: 10%;
+}
+.container .scoccaEsterna #display .modal form button {
+  background-color: rgb(36, 241, 36);
+  color: black;
+  text-shadow: 0px 0px 2px rgba(58, 212, 41, 0.74);
+  align-items: flex-end;
+  margin-left: 0.5em;
   border-radius: 20px;
 }
-.modal .utente-modal,
-.modal .numeroCellulare-modal,
-.modal .credito-modal,
-.modal .azioni-modal {
-  padding: 2em 0;
+.container .scoccaEsterna #display .modal form button:hover {
+  background-color: red;
+}
+.container .scoccaEsterna #display .modal .azioni-modal {
+  display: flex;
+  justify-content: space-around;
+}
+.container .scoccaEsterna #display .modal .azioni-modal .buttonChiama {
+  border-radius: 50%;
+  font-size: 3rem;
+  background-color: rgb(124, 182, 38);
+}
+.container .scoccaEsterna #display .modal .azioni-modal .buttonTermina {
+  border-radius: 50%;
+  font-size: 3rem;
+  transform: rotate(90deg);
+  background-color: red;
+  color: white;
+}
+.container .scoccaEsterna #display .wellcome {
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+  background-color: white;
+}
+.container .scoccaEsterna #display .wellcome h2 {
+  margin: 0;
+  text-align: center;
+  padding-top: 5em;
+}
+.container .scoccaEsterna #display .wellcome .buttonStart {
+  display: block;
+  width: 50%;
+  margin: 5em auto;
+  font-size: 2em;
+  color: white;
+  border: none;
+  background-color: rgb(3, 213, 3);
+  border-radius: 30px;
+}
+.container .scoccaEsterna #display .wellcome .buttonStart:hover {
+  box-shadow: 0px 0px 20px green;
 }/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,196 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    padding-top: 1em;
+
+    .scoccaEsterna {
+        overflow: hidden;
+        width: 60%;
+        height: 90%;
+        background-color: rgb(0, 0, 0);
+        margin: 0 auto;
+        padding: 0 1em;
+        padding-bottom: 2em;
+        border-radius: 10%;
+        
+        .frontCamera {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            top: 3%;
+            width: 40%;
+            height: 3%;
+            background-color: rgb(0, 0, 0);
+            margin: 0 auto;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+
+            .cameraCassa {
+                display: flex;
+                justify-content: space-around;
+                width: 30%;
+                height:50%;
+
+                .cassa{
+                    width: 60%;
+                    height: 100%;
+                    background-color: rgb(49, 49, 49);
+                }
+                .camera {
+                    width: 20%;
+                    height: 100%;
+                    background-image: linear-gradient(50deg, black, violet);
+                    border-radius: 50%;
+                }
+                
+            }
+            
+        }
+
+        #display {
+            height: 98%;
+            width: 100%;
+            margin: 0 auto;
+            
+            #menuDiv {
+                overflow: auto;
+                background-color: white;
+                width: 100%;
+                height: 100%;
+                border-radius: 5%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+
+                .sezioneUtente {
+                    margin: 1em auto;
+                    width: 50%;
+                    text-align: center;
+                    padding: 2.1em 0;
+                    border-top: 2px solid blue;
+                    background-image: linear-gradient(rgb(143, 143, 253), white);
+                    border-radius: 20px;
+                    cursor: pointer;
+
+                    &:hover {
+                        border-top: none;
+                        background-image: linear-gradient(white, red);
+                    }
+                }   
+            }
+
+            .modal {
+                overflow: auto;
+                height: 90%;
+                text-align: center;
+                background-color: rgba(255, 0, 0, 0.652);
+                color: white;
+                font-size: 1.2em;
+                align-self: center;
+                padding: 1.5em;
+                border-radius: 10%;
+
+                .modal-div-turnBack {
+                    display: flex;
+                    justify-content: flex-start;
+                    
+                    button {
+                        position: relative;
+                        background-color: transparent;
+                        border: none;
+                        bottom: .5em;
+                        left: .5em;
+                        font-size: 1.5rem;
+                        border-radius: 10px;
+
+                        ion-icon {
+                            color: azure;
+
+                            &:hover {
+                                box-shadow: 0px 0px 10px azure;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                }
+
+                .utente-modal,
+                .numeroCellulare-modal,
+                .credito-modal,
+                .azioni-modal {
+                    padding: 2em 0;
+                }
+                form {
+                    margin: 0 auto;
+                    display: flex;
+                    justify-content: center;
+                    label{
+                        margin-right: .5em;
+                    }
+                    input {
+                        width: 10%;
+                    }
+                    button {
+                        background-color: rgb(36, 241, 36);
+                        color: black;
+                        text-shadow: 0px 0px 2px rgba(58, 212, 41, 0.74);
+                        align-items: flex-end;
+                        margin-left: .5em;
+                        border-radius: 20px;
+
+                        &:hover {
+                            background-color: red;
+                        }
+                    }
+                }
+                .azioni-modal {
+                    display: flex;
+                    justify-content: space-around;
+                    .buttonChiama {
+                        border-radius: 50%;
+                        font-size: 3rem;
+                        background-color: rgb(124, 182, 38);
+                    }
+                    .buttonTermina {
+                        border-radius: 50%;
+                        font-size: 3rem;
+                        transform: rotate(90deg);
+                        background-color: red;
+                        color: white;
+                    }
+                }
+            }
+            .wellcome {
+                width: 100%;
+                height: 100%;
+                border-radius: 5%;
+                background-color: white;
+                h2{
+                    margin: 0;
+                    text-align: center;
+                    padding-top: 5em;
+                }
+                .buttonStart {
+                    display: block;
+                    width: 50%;
+                    margin: 5em auto;
+                    font-size: 2em;
+                    color: white;
+                    border: none;
+                    background-color: rgb(3, 213, 3);
+                    border-radius: 30px;
+                    &:hover {
+                        box-shadow: 0px 0px 20px green;
+                    }          
+                }
+            }
+            
+        }
+    }
+  }
+
+
+
+
+  
